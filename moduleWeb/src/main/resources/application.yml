@@ -4,6 +4,7 @@ server:
 spring:
   profiles:
     include:
+      - jpa
       - flyway
     active:
       - local
