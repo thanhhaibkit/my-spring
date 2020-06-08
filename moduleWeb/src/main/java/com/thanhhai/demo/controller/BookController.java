@@ -1,20 +1,16 @@
 package com.thanhhai.demo.controller;
 
-import com.thanhhai.demo.model.Book;
 import com.thanhhai.demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
-
-@CrossOrigin(origins = "https://vue-blog-app.herokuapp.com", maxAge = 3600)
-@RestController
-@RequestMapping("/api/books")
+@Controller
+@RequestMapping("/books")
 @Slf4j
 @RequiredArgsConstructor
 public class BookController {
@@ -22,45 +18,11 @@ public class BookController {
     BookService bookService;
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
-        return ResponseEntity.ok(bookService.findAll());
+    public String getAll(Model model)
+    {
+        model.addAttribute("books", bookService.findAll());
+        return "books/all";
     }
 
-    @PostMapping
-    public ResponseEntity create(@Valid @RequestBody Book book) {
-        return ResponseEntity.ok(bookService.save(book));
-    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Book> findById(@PathVariable Long id) {
-        Optional<Book> book = bookService.findById(id);
-        if (!book.isPresent()) {
-            //log.error("Id " + id + " is not existed");
-            ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(book.get());
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Book> update(@PathVariable Long id, @Valid @RequestBody Book book) {
-        if (!bookService.findById(id).isPresent()) {
-            //log.error("Id " + id + " is not existed");
-            ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(bookService.save(book));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
-        if (!bookService.findById(id).isPresent()) {
-            //log.error("Id " + id + " is not existed");
-            ResponseEntity.badRequest().build();
-        }
-
-        bookService.deleteById(id);
-
-        return ResponseEntity.ok().build();
-    }
 }
