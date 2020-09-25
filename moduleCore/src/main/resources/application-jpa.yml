@@ -6,6 +6,6 @@ spring:
           lob:
             non_contextual_creation: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        default_schema: demo
+        default_schema: public
         # Hibernate ddl auto (create, create-drop, validate, update)
         ddl-auto: update

@@ -11,10 +11,10 @@ buildscript {
 
 def env = System.getenv()
 def jdbc = [
-    driver  : 'org.postgresql.Driver',
-    url     : env['SPRING_DATASOURCE_URL'] ?: 'jdbc:postgresql://localhost:5432/postgres',
-    user    : env['SPRING_DATASOURCE_USERNAME'] ?: 'user',
-    password: env['SPRING_DATASOURCE_PASSWORD'] ?: 'password'
+        driver  : 'org.postgresql.Driver',
+        url     : env['SPRING_DATASOURCE_URL'] ?: 'jdbc:postgresql://localhost:5432/postgres',
+        user    : env['SPRING_DATASOURCE_USERNAME'] ?: 'user',
+        password: env['SPRING_DATASOURCE_PASSWORD'] ?: 'password'
 ]
 def classLoader = Sql.class.getClassLoader()
 this.buildscript.configurations.classpath.each { classPath ->
@@ -34,14 +34,14 @@ flyway {
 task initializeSchemaSalesforce {
     group = 'database'
     doLast {
-        executeSqlFiles("moduleCore/src/main/resources/database/migration/ddl", /^salesforce_.*\.sql$/, jdbc)
+        executeSqlFiles("module-core/src/main/resources/db/migration/ddl", /^salesforce_.*\.sql$/, jdbc)
     }
 }
 
 task setupDataPublic {
     group = 'database'
     doLast {
-        executeSqlFiles("moduleCore/src/main/resources/database/migration/data", /^data_public_.*\.sql$/, jdbc)
+        executeSqlFiles("moduleCore/src/main/resources/db/migration/data", /^data_public_.*\.sql$/, jdbc)
     }
 }
 

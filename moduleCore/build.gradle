@@ -14,7 +14,7 @@ buildscript {
 }
 
 project.ext {
-	postgresVersion = '42.2.12' // https://mvnrepository.com/artifact/org.postgresql/postgresql
+	postgresVersion = '42.2.16' // https://mvnrepository.com/artifact/org.postgresql/postgresql
 }
 
 apply plugin: 'java-library'
@@ -33,7 +33,7 @@ configurations {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.flywaydb:flyway-core'
+	compile 'org.flywaydb:flyway-core'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'

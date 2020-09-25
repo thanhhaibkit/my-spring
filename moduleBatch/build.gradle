@@ -1,4 +1,4 @@
 // Just say hello
 hello.doLast {
-	println "- I am API module."
+	println "- I am Batch module."
 }
