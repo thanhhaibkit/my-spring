@@ -1,4 +1,4 @@
-package com.thanhhai.demo.model;
+package com.thanhhai.demo.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

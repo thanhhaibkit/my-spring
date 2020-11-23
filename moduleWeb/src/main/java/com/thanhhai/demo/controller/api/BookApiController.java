@@ -1,6 +1,6 @@
 package com.thanhhai.demo.controller.api;
 
-import com.thanhhai.demo.model.Book;
+import com.thanhhai.demo.entity.Book;
 import com.thanhhai.demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
