@@ -1,6 +1,6 @@
 package com.thanhhai.demo.service;
 
-import com.thanhhai.demo.model.Book;
+import com.thanhhai.demo.entity.Book;
 import com.thanhhai.demo.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

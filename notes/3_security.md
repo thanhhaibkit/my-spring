@@ -1,3 +1,15 @@
+# Security
+
+File: build.gradle
+```
+dependencies {
+    ...
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+}
+```
+
+File: com.thanhhai.demo.WebSecurityConfig.java
+```java
 package com.thanhhai.demo.config;
 
 import org.springframework.context.annotation.Bean;
@@ -18,11 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers(
-                            "/", "/home",
-                            "/swagger-resources/**",
-                            "/swagger-ui.html"
-                    ).permitAll()
+                    .antMatchers("/", "/home").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -48,3 +56,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(user);
     }
 }
+```
